@@ -14,7 +14,7 @@ export default async function Home({
     {
       _createdAt: new Date(),
       views: 55,
-      author: { _id: 1 },
+      author: { _id: 1, name: 'JohnDoe' },
       _id: 1,
       description: "This is a description",
       image: "https://www.google.com/url?sa=i&url=https%3A%2F%2Fsemcore.pl%2Fslownik%2Fgoogle%2F&psig=AOvVaw2U3ocdGgxFiWfnfm_HHU_T&ust=1735051892733000&source=images&cd=vfe&opi=89978449&ved=0CBQQjRxqFwoTCODtoY-SvooDFQAAAAAdAAAAABAE",
