@@ -2,7 +2,6 @@ import Link from "next/link";
 import React from "react";
 import Image from "next/image";
 import { auth, signOut, signIn } from "@/auth";
-import { redirect } from "next/dist/server/api-utils";
 
 const Navbar = async () => {
   const session = await auth();
