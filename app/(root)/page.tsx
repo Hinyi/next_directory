@@ -1,7 +1,8 @@
-import { auth } from "@/auth";
+
 import SearchForm from "../../components/SearchForm";
-import { Star } from "lucide-react";
-import StartupCard from "@/components/StartupCard";
+import StartupCard, { StartupTypeCard } from "@/components/StartupCard";
+import { client } from "@/sanity/lib/client";
+import { STARTUPS_QUERY } from "@/sanity/lib/queries";
 
 export default async function Home({
   searchParams,
@@ -10,18 +11,7 @@ export default async function Home({
 }) {
   const query = (await searchParams).query;
 
-  const posts = [
-    {
-      _createdAt: new Date(),
-      views: 55,
-      author: { _id: 1, name: 'JohnDoe' },
-      _id: 1,
-      description: "This is a description",
-      image: "https://www.google.com/url?sa=i&url=https%3A%2F%2Fsemcore.pl%2Fslownik%2Fgoogle%2F&psig=AOvVaw2U3ocdGgxFiWfnfm_HHU_T&ust=1735051892733000&source=images&cd=vfe&opi=89978449&ved=0CBQQjRxqFwoTCODtoY-SvooDFQAAAAAdAAAAABAE",
-      category: "Tech",
-      title: "Startup robots",
-    },
-  ];
+  const posts = await client.fetch(STARTUPS_QUERY)
 
   return (
     <>
@@ -39,8 +29,8 @@ export default async function Home({
         </p>
         <ul className="mt-7 card_grid">
           {posts?.length > 0 ? (
-            posts.map((post: StartupCardType, index: number) => (
-              <StartupCard key={post?._id} post={post} />
+            posts.map((post: StartupTypeCard) => (
+            <StartupCard key={post?._id} post={post} />
             ))
           ) : (
             <p className="no-result">No startup found!</p>
